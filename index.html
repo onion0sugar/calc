@@ -100,7 +100,7 @@ select{cursor:pointer}select option{background:var(--card)}
 
 @media(max-width:700px){.grid{grid-template-columns:1fr}.summary-grid{grid-template-columns:1fr !important}.save-bar{flex-direction:column;align-items:stretch}.save-bar .btn{width:100%}.s-grid{grid-template-columns:1fr}}
 </style>
-<style>[_nghost-ng-c2697620354]{font-family:Open Sans,sans-serif;color:#121212}</style></head>
+<style>[_nghost-ng-c2697620354]{font-family:Open Sans,sans-serif;color:#121212}</style><style>[_nghost-ng-c2697620354]{font-family:Open Sans,sans-serif;color:#121212}</style></head>
 <body>
 <div class="app">
 
@@ -152,7 +152,7 @@ select{cursor:pointer}select option{background:var(--card)}
         <input type="checkbox" id="has_project" checked="" onchange="toggleProject()">
         <label for="has_project">CAD design</label>
       </div>
-      <div id="project_fields">
+      <div id="project_fields" style="display: none;">
         <label>Design time (h)</label>
         <input id="proj_hours" type="number" value="1" step="0.5" min="0" oninput="calc()">
       </div>
@@ -174,27 +174,27 @@ select{cursor:pointer}select option{background:var(--card)}
       <div class="card-title">Summary <span id="dual_badge" class="badge badge-dual" style="display:none">DUAL MATERIAL</span></div>
       <div class="summary-grid">
         <div>
-          <div class="res-row"><span class="res-label">Design + scan</span><span class="res-val" id="r_setup">30,00 zł</span></div>
-          <div class="res-row"><span class="res-label" id="r_mat_label">Material (incl. purge)</span><span class="res-val" id="r_material">5,40 zł</span></div>
+          <div class="res-row"><span class="res-label">Design + scan</span><span class="res-val" id="r_setup">0,00 zł</span></div>
+          <div class="res-row"><span class="res-label" id="r_mat_label">Material (incl. purge)</span><span class="res-val" id="r_material">0,45 zł</span></div>
           <div class="res-row" id="r_mat2_row" style="display:none"><span class="res-label" id="r_mat2_label" style="color:var(--purple)">Material 2</span><span class="res-val" id="r_material2" style="color:var(--purple)">—</span></div>
-          <div class="res-row"><span class="res-label">Machine time</span><span class="res-val" id="r_machine">5,00 zł</span></div>
-          <div class="res-row"><span class="res-label">Production margin</span><span class="res-val" id="r_margin">10,40 zł</span></div>
-          <div class="res-row"><span class="res-label">Failure risk <span class="badge badge-risk" id="r_risk_badge">+5%</span></span><span class="res-val" id="r_risk">1,04 zł</span></div>
-          <div class="res-row"><span class="res-label">Post-processing</span><span class="res-val" id="r_post">15,00 zł</span></div>
+          <div class="res-row"><span class="res-label">Machine time</span><span class="res-val" id="r_machine">2,00 zł</span></div>
+          <div class="res-row"><span class="res-label">Production margin</span><span class="res-val" id="r_margin">2,45 zł</span></div>
+          <div class="res-row"><span class="res-label">Failure risk <span class="badge badge-risk" id="r_risk_badge">+8%</span></span><span class="res-val" id="r_risk">0,39 zł</span></div>
+          <div class="res-row"><span class="res-label">Post-processing</span><span class="res-val" id="r_post">0,00 zł</span></div>
           <div class="res-row" id="discount_row" style="display:none"><span class="res-label">Volume discount <span class="badge badge-discount" id="r_disc_badge"></span></span><span class="res-val" id="r_discount" style="color:var(--green)">—</span></div>
           <div class="res-row" style="border-bottom:none;padding-top:12px">
             <span class="res-label" style="color:var(--text);font-weight:600">Total net</span>
-            <span class="res-val" style="font-size:15px;color:var(--text)" id="r_net">66,84 zł</span>
+            <span class="res-val" style="font-size:15px;color:var(--text)" id="r_net">20,00 zł</span>
           </div>
           <div class="discount-info" id="discount_info" style="display: none;"></div>
-          <div class="min-note" id="min_note" style="display: none;">⚠ Minimum order price applied</div>
+          <div class="min-note" id="min_note" style="display: block;">⚠ Minimum order price applied</div>
         </div>
         <div>
           <div class="total-box">
             <div class="total-label" id="tax_label">Gross (23% tax)</div>
-            <div class="total-price" id="r_gross">82,21 zł</div>
-            <div class="total-sub" id="r_net_label">net: 66,84 zł</div>
-            <div class="per-piece" id="r_per_piece">82,21 zł / pc</div>
+            <div class="total-price" id="r_gross">24,60 zł</div>
+            <div class="total-sub" id="r_net_label">net: 20,00 zł</div>
+            <div class="per-piece" id="r_per_piece">24,60 zł / pc</div>
           </div>
         </div>
       </div>
@@ -221,7 +221,51 @@ select{cursor:pointer}select option{background:var(--card)}
     <div style="overflow-x:auto">
       <table class="cmp-table">
         <thead><tr><th>Material</th><th>Filament</th><th>Margin</th><th>Risk</th><th style="min-width:140px">Gross / pc</th></tr></thead>
-        <tbody id="cmp_body"></tbody>
+        <tbody id="cmp_body"><tr class="">
+      <td>PLA </td>
+      <td>50,00 zł/kg</td><td>×2</td><td>+5%</td>
+      <td><span class="cmp-bar" style="width:19px"></span>94,02 zł</td>
+    </tr><tr class="cmp-selected">
+      <td>PETG <span class="badge badge-selected">selected</span></td>
+      <td>50,00 zł/kg</td><td>×2</td><td>+8%</td>
+      <td><span class="cmp-bar" style="width:22px"></span>96,71 zł</td>
+    </tr><tr class="">
+      <td>ABS </td>
+      <td>50,00 zł/kg</td><td>×2</td><td>+10%</td>
+      <td><span class="cmp-bar" style="width:24px"></span>98,50 zł</td>
+    </tr><tr class="cmp-cheapest">
+      <td>ASA <span class="badge badge-cheapest">cheapest</span></td>
+      <td>30,00 zł/kg</td><td>×2</td><td>+10%</td>
+      <td><span class="cmp-bar cheapest" style="width:10px"></span>85,08 zł</td>
+    </tr><tr class="">
+      <td>ABS-CF </td>
+      <td>55,00 zł/kg</td><td>×2.5</td><td>+12%</td>
+      <td><span class="cmp-bar" style="width:56px"></span>129,63 zł</td>
+    </tr><tr class="">
+      <td>PA6-CF </td>
+      <td>70,00 zł/kg</td><td>×2.5</td><td>+15%</td>
+      <td><span class="cmp-bar" style="width:73px"></span>146,26 zł</td>
+    </tr><tr class="">
+      <td>PA-CF+ </td>
+      <td>85,00 zł/kg</td><td>×2.5</td><td>+15%</td>
+      <td><span class="cmp-bar" style="width:86px"></span>159,41 zł</td>
+    </tr><tr class="">
+      <td>PPA-CF </td>
+      <td>100,00 zł/kg</td><td>×2.5</td><td>+15%</td>
+      <td><span class="cmp-bar" style="width:100px"></span>172,57 zł</td>
+    </tr><tr class="">
+      <td>PETG-CF </td>
+      <td>100,00 zł/kg</td><td>×2</td><td>+10%</td>
+      <td><span class="cmp-bar" style="width:58px"></span>132,05 zł</td>
+    </tr><tr class="">
+      <td>TPU 95A </td>
+      <td>45,00 zł/kg</td><td>×2</td><td>+8%</td>
+      <td><span class="cmp-bar" style="width:19px"></span>93,41 zł</td>
+    </tr><tr class="">
+      <td>TPU+ </td>
+      <td>55,00 zł/kg</td><td>×2</td><td>+10%</td>
+      <td><span class="cmp-bar" style="width:27px"></span>101,85 zł</td>
+    </tr></tbody>
       </table>
     </div>
   </div>
@@ -237,7 +281,7 @@ select{cursor:pointer}select option{background:var(--card)}
         <button class="btn btn-danger" onclick="clearHistory()" style="font-size:10px;padding:6px 12px">Clear all</button>
       </div>
     </div>
-    <div id="history_list"></div>
+    <div id="history_list"><div class="empty-state"><span>📋</span>No quotes yet. Save one from the calculator.</div></div>
   </div>
 </div>
 
@@ -338,10 +382,10 @@ select{cursor:pointer}select option{background:var(--card)}
         <td><input type="number" value="15" step="1" min="0" max="50" style="width:60px" onchange="updateMat('reinforced',3,'risk',+this.value/100)"></td>
         <td><button class="btn btn-danger" style="padding:3px 8px;font-size:10px" onclick="removeMat('reinforced',3)">✕</button></td>
       </tr><tr>
-        <td><input type="text" value="New material" style="width:100%" onchange="updateMat('reinforced',4,'name',this.value)"></td>
-        <td><input type="number" value="30" step="1" min="0" style="width:72px" onchange="updateMat('reinforced',4,'price',+this.value)"></td>
+        <td><input type="text" value="PETG-CF" style="width:100%" onchange="updateMat('reinforced',4,'name',this.value)"></td>
+        <td><input type="number" value="100" step="1" min="0" style="width:72px" onchange="updateMat('reinforced',4,'price',+this.value)"></td>
         <td><input type="number" value="2" step="0.1" min="1" style="width:64px" onchange="updateMat('reinforced',4,'margin',+this.value)"></td>
-        <td><input type="number" value="5" step="1" min="0" max="50" style="width:60px" onchange="updateMat('reinforced',4,'risk',+this.value/100)"></td>
+        <td><input type="number" value="10" step="1" min="0" max="50" style="width:60px" onchange="updateMat('reinforced',4,'risk',+this.value/100)"></td>
         <td><button class="btn btn-danger" style="padding:3px 8px;font-size:10px" onclick="removeMat('reinforced',4)">✕</button></td>
       </tr>
       </tbody>
@@ -1166,4 +1210,4 @@ loadConfig();
 </script>
 
 
-</body><app-ls-content ng-version="17.3.7"></app-ls-content></html>
+<app-ls-content ng-version="17.3.7"></app-ls-content></body><app-ls-content></app-ls-content></html>
