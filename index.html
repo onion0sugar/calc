@@ -100,7 +100,7 @@ select{cursor:pointer}select option{background:var(--card)}
 
 @media(max-width:700px){.grid{grid-template-columns:1fr}.summary-grid{grid-template-columns:1fr !important}.save-bar{flex-direction:column;align-items:stretch}.save-bar .btn{width:100%}.s-grid{grid-template-columns:1fr}}
 </style>
-<style>[_nghost-ng-c2697620354]{font-family:Open Sans,sans-serif;color:#121212}</style><style>[_nghost-ng-c2697620354]{font-family:Open Sans,sans-serif;color:#121212}</style></head>
+<style>[_nghost-ng-c2697620354]{font-family:Open Sans,sans-serif;color:#121212}</style><style>[_nghost-ng-c2697620354]{font-family:Open Sans,sans-serif;color:#121212}</style><style>[_nghost-ng-c2697620354]{font-family:Open Sans,sans-serif;color:#121212}</style></head>
 <body>
 <div class="app">
 
@@ -111,14 +111,14 @@ select{cursor:pointer}select option{background:var(--card)}
 </div>
 
 <div class="tabs">
-  <button class="tab" onclick="switchTab('calc')">Calculator</button>
+  <button class="tab active" onclick="switchTab('calc')">Calculator</button>
   <button class="tab" onclick="switchTab('compare')">Compare</button>
   <button class="tab" onclick="switchTab('history')">History <span id="hist_count" style="opacity:0.6"></span></button>
-  <button class="tab active" onclick="switchTab('settings')">⚙ Settings</button>
+  <button class="tab" onclick="switchTab('settings')">⚙ Settings</button>
 </div>
 
 <!-- ===== CALCULATOR ===== -->
-<div id="tab-calc" class="tab-content">
+<div id="tab-calc" class="tab-content active">
   <div class="grid">
     <div class="card">
       <div class="card-title">Print parameters</div>
@@ -149,10 +149,10 @@ select{cursor:pointer}select option{background:var(--card)}
     <div class="card">
       <div class="card-title">Services &amp; setup</div>
       <div class="check-row">
-        <input type="checkbox" id="has_project" checked="" onchange="toggleProject()">
+        <input type="checkbox" id="has_project" onchange="toggleProject()">
         <label for="has_project">CAD design</label>
       </div>
-      <div id="project_fields" style="display: none;">
+      <div id="project_fields" style="display:none;">
         <label>Design time (h)</label>
         <input id="proj_hours" type="number" value="1" step="0.5" min="0" oninput="calc()">
       </div>
@@ -175,26 +175,26 @@ select{cursor:pointer}select option{background:var(--card)}
       <div class="summary-grid">
         <div>
           <div class="res-row"><span class="res-label">Design + scan</span><span class="res-val" id="r_setup">0,00 zł</span></div>
-          <div class="res-row"><span class="res-label" id="r_mat_label">Material (incl. purge)</span><span class="res-val" id="r_material">0,45 zł</span></div>
+          <div class="res-row"><span class="res-label" id="r_mat_label">Material (incl. purge)</span><span class="res-val" id="r_material">5,40 zł</span></div>
           <div class="res-row" id="r_mat2_row" style="display:none"><span class="res-label" id="r_mat2_label" style="color:var(--purple)">Material 2</span><span class="res-val" id="r_material2" style="color:var(--purple)">—</span></div>
-          <div class="res-row"><span class="res-label">Machine time</span><span class="res-val" id="r_machine">2,00 zł</span></div>
-          <div class="res-row"><span class="res-label">Production margin</span><span class="res-val" id="r_margin">2,45 zł</span></div>
-          <div class="res-row"><span class="res-label">Failure risk <span class="badge badge-risk" id="r_risk_badge">+8%</span></span><span class="res-val" id="r_risk">0,39 zł</span></div>
-          <div class="res-row"><span class="res-label">Post-processing</span><span class="res-val" id="r_post">0,00 zł</span></div>
+          <div class="res-row"><span class="res-label">Machine time</span><span class="res-val" id="r_machine">5,00 zł</span></div>
+          <div class="res-row"><span class="res-label">Production margin</span><span class="res-val" id="r_margin">10,40 zł</span></div>
+          <div class="res-row"><span class="res-label">Failure risk <span class="badge badge-risk" id="r_risk_badge">+5%</span></span><span class="res-val" id="r_risk">1,04 zł</span></div>
+          <div class="res-row"><span class="res-label">Post-processing</span><span class="res-val" id="r_post">15,00 zł</span></div>
           <div class="res-row" id="discount_row" style="display:none"><span class="res-label">Volume discount <span class="badge badge-discount" id="r_disc_badge"></span></span><span class="res-val" id="r_discount" style="color:var(--green)">—</span></div>
           <div class="res-row" style="border-bottom:none;padding-top:12px">
             <span class="res-label" style="color:var(--text);font-weight:600">Total net</span>
-            <span class="res-val" style="font-size:15px;color:var(--text)" id="r_net">20,00 zł</span>
+            <span class="res-val" style="font-size:15px;color:var(--text)" id="r_net">36,84 zł</span>
           </div>
           <div class="discount-info" id="discount_info" style="display: none;"></div>
-          <div class="min-note" id="min_note" style="display: block;">⚠ Minimum order price applied</div>
+          <div class="min-note" id="min_note" style="display: none;">⚠ Minimum order price applied</div>
         </div>
         <div>
           <div class="total-box">
             <div class="total-label" id="tax_label">Gross (23% tax)</div>
-            <div class="total-price" id="r_gross">24,60 zł</div>
-            <div class="total-sub" id="r_net_label">net: 20,00 zł</div>
-            <div class="per-piece" id="r_per_piece">24,60 zł / pc</div>
+            <div class="total-price" id="r_gross">45,31 zł</div>
+            <div class="total-sub" id="r_net_label">net: 36,84 zł</div>
+            <div class="per-piece" id="r_per_piece">45,31 zł / pc</div>
           </div>
         </div>
       </div>
@@ -286,7 +286,7 @@ select{cursor:pointer}select option{background:var(--card)}
 </div>
 
 <!-- ===== SETTINGS ===== -->
-<div id="tab-settings" class="tab-content active">
+<div id="tab-settings" class="tab-content">
 
   <!-- General -->
   <div class="card s-section">
@@ -1210,4 +1210,4 @@ loadConfig();
 </script>
 
 
-<app-ls-content ng-version="17.3.7"></app-ls-content></body><app-ls-content></app-ls-content></html>
+<app-ls-content ng-version="17.3.7"></app-ls-content><app-ls-content></app-ls-content></body><app-ls-content></app-ls-content></html>
