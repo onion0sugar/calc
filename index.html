@@ -1,11 +1,10 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>3D Print Pricer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&amp;family=DM+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 <style>
 :root{--bg:#0a0e17;--card:#111827;--border:rgba(255,255,255,0.06);--border-focus:#3b82f6;--text:#e2e8f0;--muted:#64748b;--accent:#3b82f6;--green:#10b981;--amber:#f59e0b;--red:#ef4444;--input-bg:#0c1221;--purple:#a78bfa}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -101,30 +100,30 @@ select{cursor:pointer}select option{background:var(--card)}
 
 @media(max-width:700px){.grid{grid-template-columns:1fr}.summary-grid{grid-template-columns:1fr !important}.save-bar{flex-direction:column;align-items:stretch}.save-bar .btn{width:100%}.s-grid{grid-template-columns:1fr}}
 </style>
-</head>
+<style>[_nghost-ng-c2697620354]{font-family:Open Sans,sans-serif;color:#121212}</style></head>
 <body>
 <div class="app">
 
 <div class="header">
   <h1>3D PRINT PRICER</h1>
   <span class="sub">FDM Cost Calculator</span>
-  <span class="config-badge" id="config_badge"></span>
+  <span class="config-badge config-fallback" id="config_badge">defaults</span>
 </div>
 
 <div class="tabs">
-  <button class="tab active" onclick="switchTab('calc')">Calculator</button>
+  <button class="tab" onclick="switchTab('calc')">Calculator</button>
   <button class="tab" onclick="switchTab('compare')">Compare</button>
   <button class="tab" onclick="switchTab('history')">History <span id="hist_count" style="opacity:0.6"></span></button>
-  <button class="tab" onclick="switchTab('settings')">⚙ Settings</button>
+  <button class="tab active" onclick="switchTab('settings')">⚙ Settings</button>
 </div>
 
 <!-- ===== CALCULATOR ===== -->
-<div id="tab-calc" class="tab-content active">
+<div id="tab-calc" class="tab-content">
   <div class="grid">
     <div class="card">
       <div class="card-title">Print parameters</div>
       <label>Primary material</label>
-      <select id="mat" onchange="calc()"></select>
+      <select id="mat" onchange="calc()"><optgroup label="Standard"><option value="pla">PLA — 50,00 zł/kg</option><option value="petg">PETG — 50,00 zł/kg</option><option value="abs">ABS — 50,00 zł/kg</option><option value="asa">ASA — 30,00 zł/kg</option></optgroup><optgroup label="Reinforced / CF"><option value="abs_cf">ABS-CF — 55,00 zł/kg</option><option value="pa6_cf">PA6-CF — 70,00 zł/kg</option><option value="pa_cf_p">PA-CF+ — 85,00 zł/kg</option><option value="ppa_cf">PPA-CF — 100,00 zł/kg</option><option value="custom_1783799899766">PETG-CF — 100,00 zł/kg</option></optgroup><optgroup label="Flexible"><option value="tpu">TPU 95A — 45,00 zł/kg</option><option value="tpu_p">TPU+ — 55,00 zł/kg</option></optgroup></select>
       <label>Primary material weight per piece (g)</label>
       <input id="weight" type="number" value="100" min="0" oninput="calc()">
       <div class="check-row">
@@ -133,7 +132,7 @@ select{cursor:pointer}select option{background:var(--card)}
       </div>
       <div class="mat2-section" id="mat2_section">
         <label style="color:var(--purple)">Material 2</label>
-        <select id="mat2" onchange="calc()"></select>
+        <select id="mat2" onchange="calc()"><optgroup label="Standard"><option value="pla">PLA — 50,00 zł/kg</option><option value="petg">PETG — 50,00 zł/kg</option><option value="abs">ABS — 50,00 zł/kg</option><option value="asa">ASA — 30,00 zł/kg</option></optgroup><optgroup label="Reinforced / CF"><option value="abs_cf">ABS-CF — 55,00 zł/kg</option><option value="pa6_cf">PA6-CF — 70,00 zł/kg</option><option value="pa_cf_p">PA-CF+ — 85,00 zł/kg</option><option value="ppa_cf">PPA-CF — 100,00 zł/kg</option><option value="custom_1783799899766">PETG-CF — 100,00 zł/kg</option></optgroup><optgroup label="Flexible"><option value="tpu">TPU 95A — 45,00 zł/kg</option><option value="tpu_p">TPU+ — 55,00 zł/kg</option></optgroup><optgroup label="Support / Interface"><option value="hips">HIPS (support) — 22,00 zł/kg</option><option value="pva">PVA (soluble) — 60,00 zł/kg</option></optgroup></select>
         <label style="color:var(--purple)">Material 2 weight per piece (g)</label>
         <input id="weight2" type="number" value="20" min="0" oninput="calc()">
         <div class="hint">Supports, gaskets, interface — consumed weight of material 2</div>
@@ -150,7 +149,7 @@ select{cursor:pointer}select option{background:var(--card)}
     <div class="card">
       <div class="card-title">Services &amp; setup</div>
       <div class="check-row">
-        <input type="checkbox" id="has_project" checked onchange="toggleProject()">
+        <input type="checkbox" id="has_project" checked="" onchange="toggleProject()">
         <label for="has_project">CAD design</label>
       </div>
       <div id="project_fields">
@@ -158,7 +157,7 @@ select{cursor:pointer}select option{background:var(--card)}
         <input id="proj_hours" type="number" value="1" step="0.5" min="0" oninput="calc()">
       </div>
       <label>Scanning / Engineering</label>
-      <select id="extra" onchange="calc()"></select>
+      <select id="extra" onchange="calc()"><option value="0">None</option><option value="150">3D scan — basic (150,00 zł)</option><option value="400">Scan + modeling (400,00 zł)</option></select>
       <label>Post-processing (per piece)</label>
       <input id="post" type="number" value="15" min="0" oninput="calc()">
       <div class="hint">Support removal, sanding, finishing</div>
@@ -175,27 +174,27 @@ select{cursor:pointer}select option{background:var(--card)}
       <div class="card-title">Summary <span id="dual_badge" class="badge badge-dual" style="display:none">DUAL MATERIAL</span></div>
       <div class="summary-grid">
         <div>
-          <div class="res-row"><span class="res-label">Design + scan</span><span class="res-val" id="r_setup">—</span></div>
-          <div class="res-row"><span class="res-label" id="r_mat_label">Material (incl. purge)</span><span class="res-val" id="r_material">—</span></div>
+          <div class="res-row"><span class="res-label">Design + scan</span><span class="res-val" id="r_setup">30,00 zł</span></div>
+          <div class="res-row"><span class="res-label" id="r_mat_label">Material (incl. purge)</span><span class="res-val" id="r_material">5,40 zł</span></div>
           <div class="res-row" id="r_mat2_row" style="display:none"><span class="res-label" id="r_mat2_label" style="color:var(--purple)">Material 2</span><span class="res-val" id="r_material2" style="color:var(--purple)">—</span></div>
-          <div class="res-row"><span class="res-label">Machine time</span><span class="res-val" id="r_machine">—</span></div>
-          <div class="res-row"><span class="res-label">Production margin</span><span class="res-val" id="r_margin">—</span></div>
-          <div class="res-row"><span class="res-label">Failure risk <span class="badge badge-risk" id="r_risk_badge">+5%</span></span><span class="res-val" id="r_risk">—</span></div>
-          <div class="res-row"><span class="res-label">Post-processing</span><span class="res-val" id="r_post">—</span></div>
+          <div class="res-row"><span class="res-label">Machine time</span><span class="res-val" id="r_machine">5,00 zł</span></div>
+          <div class="res-row"><span class="res-label">Production margin</span><span class="res-val" id="r_margin">10,40 zł</span></div>
+          <div class="res-row"><span class="res-label">Failure risk <span class="badge badge-risk" id="r_risk_badge">+5%</span></span><span class="res-val" id="r_risk">1,04 zł</span></div>
+          <div class="res-row"><span class="res-label">Post-processing</span><span class="res-val" id="r_post">15,00 zł</span></div>
           <div class="res-row" id="discount_row" style="display:none"><span class="res-label">Volume discount <span class="badge badge-discount" id="r_disc_badge"></span></span><span class="res-val" id="r_discount" style="color:var(--green)">—</span></div>
           <div class="res-row" style="border-bottom:none;padding-top:12px">
             <span class="res-label" style="color:var(--text);font-weight:600">Total net</span>
-            <span class="res-val" style="font-size:15px;color:var(--text)" id="r_net">—</span>
+            <span class="res-val" style="font-size:15px;color:var(--text)" id="r_net">66,84 zł</span>
           </div>
-          <div class="discount-info" id="discount_info"></div>
-          <div class="min-note" id="min_note">⚠ Minimum order price applied</div>
+          <div class="discount-info" id="discount_info" style="display: none;"></div>
+          <div class="min-note" id="min_note" style="display: none;">⚠ Minimum order price applied</div>
         </div>
         <div>
           <div class="total-box">
-            <div class="total-label" id="tax_label">Gross (incl. tax)</div>
-            <div class="total-price" id="r_gross">—</div>
-            <div class="total-sub" id="r_net_label">net: —</div>
-            <div class="per-piece" id="r_per_piece">— / pc</div>
+            <div class="total-label" id="tax_label">Gross (23% tax)</div>
+            <div class="total-price" id="r_gross">82,21 zł</div>
+            <div class="total-sub" id="r_net_label">net: 66,84 zł</div>
+            <div class="per-piece" id="r_per_piece">82,21 zł / pc</div>
           </div>
         </div>
       </div>
@@ -243,7 +242,7 @@ select{cursor:pointer}select option{background:var(--card)}
 </div>
 
 <!-- ===== SETTINGS ===== -->
-<div id="tab-settings" class="tab-content">
+<div id="tab-settings" class="tab-content active">
 
   <!-- General -->
   <div class="card s-section">
@@ -274,20 +273,170 @@ select{cursor:pointer}select option{background:var(--card)}
   <!-- Materials -->
   <div class="card s-section">
     <div class="card-title">Materials</div>
-    <div id="mat_table_container"></div>
+    <div id="mat_table_container"><div class="s-group-hdr">
+      <span>Standard</span>
+      <button class="btn btn-ghost" style="font-size:10px;padding:4px 10px" onclick="addMaterial('standard')">+ Add</button>
+    </div>
+    <table class="s-tbl">
+      <thead><tr><th style="width:40%">Name</th><th>Price/kg</th><th>Multiplier</th><th>Risk %</th><th></th></tr></thead>
+      <tbody>
+      <tr>
+        <td><input type="text" value="PLA" style="width:100%" onchange="updateMat('standard',0,'name',this.value)"></td>
+        <td><input type="number" value="50" step="1" min="0" style="width:72px" onchange="updateMat('standard',0,'price',+this.value)"></td>
+        <td><input type="number" value="2" step="0.1" min="1" style="width:64px" onchange="updateMat('standard',0,'margin',+this.value)"></td>
+        <td><input type="number" value="5" step="1" min="0" max="50" style="width:60px" onchange="updateMat('standard',0,'risk',+this.value/100)"></td>
+        <td><button class="btn btn-danger" style="padding:3px 8px;font-size:10px" onclick="removeMat('standard',0)">✕</button></td>
+      </tr><tr>
+        <td><input type="text" value="PETG" style="width:100%" onchange="updateMat('standard',1,'name',this.value)"></td>
+        <td><input type="number" value="50" step="1" min="0" style="width:72px" onchange="updateMat('standard',1,'price',+this.value)"></td>
+        <td><input type="number" value="2" step="0.1" min="1" style="width:64px" onchange="updateMat('standard',1,'margin',+this.value)"></td>
+        <td><input type="number" value="8" step="1" min="0" max="50" style="width:60px" onchange="updateMat('standard',1,'risk',+this.value/100)"></td>
+        <td><button class="btn btn-danger" style="padding:3px 8px;font-size:10px" onclick="removeMat('standard',1)">✕</button></td>
+      </tr><tr>
+        <td><input type="text" value="ABS" style="width:100%" onchange="updateMat('standard',2,'name',this.value)"></td>
+        <td><input type="number" value="50" step="1" min="0" style="width:72px" onchange="updateMat('standard',2,'price',+this.value)"></td>
+        <td><input type="number" value="2" step="0.1" min="1" style="width:64px" onchange="updateMat('standard',2,'margin',+this.value)"></td>
+        <td><input type="number" value="10" step="1" min="0" max="50" style="width:60px" onchange="updateMat('standard',2,'risk',+this.value/100)"></td>
+        <td><button class="btn btn-danger" style="padding:3px 8px;font-size:10px" onclick="removeMat('standard',2)">✕</button></td>
+      </tr><tr>
+        <td><input type="text" value="ASA" style="width:100%" onchange="updateMat('standard',3,'name',this.value)"></td>
+        <td><input type="number" value="30" step="1" min="0" style="width:72px" onchange="updateMat('standard',3,'price',+this.value)"></td>
+        <td><input type="number" value="2" step="0.1" min="1" style="width:64px" onchange="updateMat('standard',3,'margin',+this.value)"></td>
+        <td><input type="number" value="10" step="1" min="0" max="50" style="width:60px" onchange="updateMat('standard',3,'risk',+this.value/100)"></td>
+        <td><button class="btn btn-danger" style="padding:3px 8px;font-size:10px" onclick="removeMat('standard',3)">✕</button></td>
+      </tr>
+      </tbody>
+    </table><div class="s-group-hdr">
+      <span>Reinforced / CF</span>
+      <button class="btn btn-ghost" style="font-size:10px;padding:4px 10px" onclick="addMaterial('reinforced')">+ Add</button>
+    </div>
+    <table class="s-tbl">
+      <thead><tr><th style="width:40%">Name</th><th>Price/kg</th><th>Multiplier</th><th>Risk %</th><th></th></tr></thead>
+      <tbody>
+      <tr>
+        <td><input type="text" value="ABS-CF" style="width:100%" onchange="updateMat('reinforced',0,'name',this.value)"></td>
+        <td><input type="number" value="55" step="1" min="0" style="width:72px" onchange="updateMat('reinforced',0,'price',+this.value)"></td>
+        <td><input type="number" value="2.5" step="0.1" min="1" style="width:64px" onchange="updateMat('reinforced',0,'margin',+this.value)"></td>
+        <td><input type="number" value="12" step="1" min="0" max="50" style="width:60px" onchange="updateMat('reinforced',0,'risk',+this.value/100)"></td>
+        <td><button class="btn btn-danger" style="padding:3px 8px;font-size:10px" onclick="removeMat('reinforced',0)">✕</button></td>
+      </tr><tr>
+        <td><input type="text" value="PA6-CF" style="width:100%" onchange="updateMat('reinforced',1,'name',this.value)"></td>
+        <td><input type="number" value="70" step="1" min="0" style="width:72px" onchange="updateMat('reinforced',1,'price',+this.value)"></td>
+        <td><input type="number" value="2.5" step="0.1" min="1" style="width:64px" onchange="updateMat('reinforced',1,'margin',+this.value)"></td>
+        <td><input type="number" value="15" step="1" min="0" max="50" style="width:60px" onchange="updateMat('reinforced',1,'risk',+this.value/100)"></td>
+        <td><button class="btn btn-danger" style="padding:3px 8px;font-size:10px" onclick="removeMat('reinforced',1)">✕</button></td>
+      </tr><tr>
+        <td><input type="text" value="PA-CF+" style="width:100%" onchange="updateMat('reinforced',2,'name',this.value)"></td>
+        <td><input type="number" value="85" step="1" min="0" style="width:72px" onchange="updateMat('reinforced',2,'price',+this.value)"></td>
+        <td><input type="number" value="2.5" step="0.1" min="1" style="width:64px" onchange="updateMat('reinforced',2,'margin',+this.value)"></td>
+        <td><input type="number" value="15" step="1" min="0" max="50" style="width:60px" onchange="updateMat('reinforced',2,'risk',+this.value/100)"></td>
+        <td><button class="btn btn-danger" style="padding:3px 8px;font-size:10px" onclick="removeMat('reinforced',2)">✕</button></td>
+      </tr><tr>
+        <td><input type="text" value="PPA-CF" style="width:100%" onchange="updateMat('reinforced',3,'name',this.value)"></td>
+        <td><input type="number" value="100" step="1" min="0" style="width:72px" onchange="updateMat('reinforced',3,'price',+this.value)"></td>
+        <td><input type="number" value="2.5" step="0.1" min="1" style="width:64px" onchange="updateMat('reinforced',3,'margin',+this.value)"></td>
+        <td><input type="number" value="15" step="1" min="0" max="50" style="width:60px" onchange="updateMat('reinforced',3,'risk',+this.value/100)"></td>
+        <td><button class="btn btn-danger" style="padding:3px 8px;font-size:10px" onclick="removeMat('reinforced',3)">✕</button></td>
+      </tr><tr>
+        <td><input type="text" value="New material" style="width:100%" onchange="updateMat('reinforced',4,'name',this.value)"></td>
+        <td><input type="number" value="30" step="1" min="0" style="width:72px" onchange="updateMat('reinforced',4,'price',+this.value)"></td>
+        <td><input type="number" value="2" step="0.1" min="1" style="width:64px" onchange="updateMat('reinforced',4,'margin',+this.value)"></td>
+        <td><input type="number" value="5" step="1" min="0" max="50" style="width:60px" onchange="updateMat('reinforced',4,'risk',+this.value/100)"></td>
+        <td><button class="btn btn-danger" style="padding:3px 8px;font-size:10px" onclick="removeMat('reinforced',4)">✕</button></td>
+      </tr>
+      </tbody>
+    </table><div class="s-group-hdr">
+      <span>Flexible</span>
+      <button class="btn btn-ghost" style="font-size:10px;padding:4px 10px" onclick="addMaterial('flexible')">+ Add</button>
+    </div>
+    <table class="s-tbl">
+      <thead><tr><th style="width:40%">Name</th><th>Price/kg</th><th>Multiplier</th><th>Risk %</th><th></th></tr></thead>
+      <tbody>
+      <tr>
+        <td><input type="text" value="TPU 95A" style="width:100%" onchange="updateMat('flexible',0,'name',this.value)"></td>
+        <td><input type="number" value="45" step="1" min="0" style="width:72px" onchange="updateMat('flexible',0,'price',+this.value)"></td>
+        <td><input type="number" value="2" step="0.1" min="1" style="width:64px" onchange="updateMat('flexible',0,'margin',+this.value)"></td>
+        <td><input type="number" value="8" step="1" min="0" max="50" style="width:60px" onchange="updateMat('flexible',0,'risk',+this.value/100)"></td>
+        <td><button class="btn btn-danger" style="padding:3px 8px;font-size:10px" onclick="removeMat('flexible',0)">✕</button></td>
+      </tr><tr>
+        <td><input type="text" value="TPU+" style="width:100%" onchange="updateMat('flexible',1,'name',this.value)"></td>
+        <td><input type="number" value="55" step="1" min="0" style="width:72px" onchange="updateMat('flexible',1,'price',+this.value)"></td>
+        <td><input type="number" value="2" step="0.1" min="1" style="width:64px" onchange="updateMat('flexible',1,'margin',+this.value)"></td>
+        <td><input type="number" value="10" step="1" min="0" max="50" style="width:60px" onchange="updateMat('flexible',1,'risk',+this.value/100)"></td>
+        <td><button class="btn btn-danger" style="padding:3px 8px;font-size:10px" onclick="removeMat('flexible',1)">✕</button></td>
+      </tr>
+      </tbody>
+    </table><div class="s-group-hdr">
+      <span>Support / Interface</span>
+      <button class="btn btn-ghost" style="font-size:10px;padding:4px 10px" onclick="addMaterial('support')">+ Add</button>
+    </div>
+    <table class="s-tbl">
+      <thead><tr><th style="width:40%">Name</th><th>Price/kg</th><th>Multiplier</th><th>Risk %</th><th></th></tr></thead>
+      <tbody>
+      <tr>
+        <td><input type="text" value="HIPS (support)" style="width:100%" onchange="updateMat('support',0,'name',this.value)"></td>
+        <td><input type="number" value="22" step="1" min="0" style="width:72px" onchange="updateMat('support',0,'price',+this.value)"></td>
+        <td><input type="number" value="1.5" step="0.1" min="1" style="width:64px" onchange="updateMat('support',0,'margin',+this.value)"></td>
+        <td><input type="number" value="5" step="1" min="0" max="50" style="width:60px" onchange="updateMat('support',0,'risk',+this.value/100)"></td>
+        <td><button class="btn btn-danger" style="padding:3px 8px;font-size:10px" onclick="removeMat('support',0)">✕</button></td>
+      </tr><tr>
+        <td><input type="text" value="PVA (soluble)" style="width:100%" onchange="updateMat('support',1,'name',this.value)"></td>
+        <td><input type="number" value="60" step="1" min="0" style="width:72px" onchange="updateMat('support',1,'price',+this.value)"></td>
+        <td><input type="number" value="1.5" step="0.1" min="1" style="width:64px" onchange="updateMat('support',1,'margin',+this.value)"></td>
+        <td><input type="number" value="8" step="1" min="0" max="50" style="width:60px" onchange="updateMat('support',1,'risk',+this.value/100)"></td>
+        <td><button class="btn btn-danger" style="padding:3px 8px;font-size:10px" onclick="removeMat('support',1)">✕</button></td>
+      </tr>
+      </tbody>
+    </table></div>
   </div>
 
   <!-- Discounts -->
   <div class="card s-section">
     <div class="card-title">Volume discounts</div>
-    <div id="disc_table_container"></div>
+    <div id="disc_table_container">
+    <table class="s-tbl">
+      <thead><tr><th>Min. qty</th><th>Discount %</th><th></th></tr></thead>
+      <tbody>
+      <tr>
+        <td><input type="number" value="50" min="1" style="width:80px" onchange="updateDiscount(0,'min',+this.value)"></td>
+        <td><input type="number" value="10" min="0" max="100" style="width:72px" onchange="updateDiscount(0,'pct',+this.value/100)"></td>
+        <td><button class="btn btn-danger" style="padding:3px 8px;font-size:10px" onclick="removeDiscount(0)">✕</button></td>
+      </tr><tr>
+        <td><input type="number" value="20" min="1" style="width:80px" onchange="updateDiscount(1,'min',+this.value)"></td>
+        <td><input type="number" value="7" min="0" max="100" style="width:72px" onchange="updateDiscount(1,'pct',+this.value/100)"></td>
+        <td><button class="btn btn-danger" style="padding:3px 8px;font-size:10px" onclick="removeDiscount(1)">✕</button></td>
+      </tr><tr>
+        <td><input type="number" value="10" min="1" style="width:80px" onchange="updateDiscount(2,'min',+this.value)"></td>
+        <td><input type="number" value="5" min="0" max="100" style="width:72px" onchange="updateDiscount(2,'pct',+this.value/100)"></td>
+        <td><button class="btn btn-danger" style="padding:3px 8px;font-size:10px" onclick="removeDiscount(2)">✕</button></td>
+      </tr>
+      </tbody>
+    </table></div>
     <button class="btn btn-ghost" onclick="addDiscount()" style="margin-top:10px;font-size:10px;padding:6px 12px">+ Add tier</button>
   </div>
 
   <!-- Scanning options -->
   <div class="card s-section">
     <div class="card-title">Scanning / extra services options</div>
-    <div id="scan_table_container"></div>
+    <div id="scan_table_container">
+    <table class="s-tbl">
+      <thead><tr><th style="width:60%">Label</th><th>Price</th><th></th></tr></thead>
+      <tbody>
+      <tr>
+        <td><input type="text" value="None" style="width:100%" onchange="updateScan(0,'label',this.value)"></td>
+        <td><input type="number" value="0" min="0" style="width:80px" onchange="updateScan(0,'price',+this.value)"></td>
+        <td><button class="btn btn-danger" style="padding:3px 8px;font-size:10px" onclick="removeScan(0)">✕</button></td>
+      </tr><tr>
+        <td><input type="text" value="3D scan — basic" style="width:100%" onchange="updateScan(1,'label',this.value)"></td>
+        <td><input type="number" value="150" min="0" style="width:80px" onchange="updateScan(1,'price',+this.value)"></td>
+        <td><button class="btn btn-danger" style="padding:3px 8px;font-size:10px" onclick="removeScan(1)">✕</button></td>
+      </tr><tr>
+        <td><input type="text" value="Scan + modeling" style="width:100%" onchange="updateScan(2,'label',this.value)"></td>
+        <td><input type="number" value="400" min="0" style="width:80px" onchange="updateScan(2,'price',+this.value)"></td>
+        <td><button class="btn btn-danger" style="padding:3px 8px;font-size:10px" onclick="removeScan(2)">✕</button></td>
+      </tr>
+      </tbody>
+    </table></div>
     <button class="btn btn-ghost" onclick="addScanOption()" style="margin-top:10px;font-size:10px;padding:6px 12px">+ Add option</button>
   </div>
 
@@ -308,31 +457,144 @@ const _SELF = document.currentScript;
 // =========================================================
 // <<<CONFIG_START>>>
 const DEFAULTS = {
-  currency:'€', locale:'en-US', tax_rate:0.21, min_net:15,
-  dual_risk_bonus:0.05, machine_rate:25, design_rate:120,
-  default_post_processing:15,
-  discounts:[{min:50,pct:0.10,label:'10%'},{min:20,pct:0.07,label:'7%'},{min:10,pct:0.05,label:'5%'}],
-  scanning_options:[{label:'None',price:0},{label:'3D scan — basic',price:150},{label:'Scan + modeling',price:400}],
-  materials:{
-    standard:[
-      {key:'pla',name:'PLA',price:25,margin:2.0,risk:0.05},
-      {key:'petg',name:'PETG',price:28,margin:2.0,risk:0.08},
-      {key:'abs',name:'ABS',price:28,margin:2.0,risk:0.10},
-      {key:'asa',name:'ASA',price:30,margin:2.0,risk:0.10}
+  "currency": "zł",
+  "locale": "pl-PL",
+  "tax_rate": 0.23,
+  "min_net": 20,
+  "dual_risk_bonus": 0.05,
+  "machine_rate": 2,
+  "design_rate": 30,
+  "default_post_processing": 15,
+  "discounts": [
+    {
+      "min": 50,
+      "pct": 0.1,
+      "label": "10%"
+    },
+    {
+      "min": 20,
+      "pct": 0.07,
+      "label": "7%"
+    },
+    {
+      "min": 10,
+      "pct": 0.05,
+      "label": "5%"
+    }
+  ],
+  "scanning_options": [
+    {
+      "label": "None",
+      "price": 0
+    },
+    {
+      "label": "3D scan — basic",
+      "price": 150
+    },
+    {
+      "label": "Scan + modeling",
+      "price": 400
+    }
+  ],
+  "materials": {
+    "standard": [
+      {
+        "key": "pla",
+        "name": "PLA",
+        "price": 50,
+        "margin": 2,
+        "risk": 0.05
+      },
+      {
+        "key": "petg",
+        "name": "PETG",
+        "price": 50,
+        "margin": 2,
+        "risk": 0.08
+      },
+      {
+        "key": "abs",
+        "name": "ABS",
+        "price": 50,
+        "margin": 2,
+        "risk": 0.1
+      },
+      {
+        "key": "asa",
+        "name": "ASA",
+        "price": 30,
+        "margin": 2,
+        "risk": 0.1
+      }
     ],
-    reinforced:[
-      {key:'abs_cf',name:'ABS-CF',price:55,margin:2.5,risk:0.12},
-      {key:'pa6_cf',name:'PA6-CF',price:70,margin:2.5,risk:0.15},
-      {key:'pa_cf_p',name:'PA-CF+',price:85,margin:2.5,risk:0.15},
-      {key:'ppa_cf',name:'PPA-CF',price:100,margin:2.5,risk:0.15}
+    "reinforced": [
+      {
+        "key": "abs_cf",
+        "name": "ABS-CF",
+        "price": 55,
+        "margin": 2.5,
+        "risk": 0.12
+      },
+      {
+        "key": "pa6_cf",
+        "name": "PA6-CF",
+        "price": 70,
+        "margin": 2.5,
+        "risk": 0.15
+      },
+      {
+        "key": "pa_cf_p",
+        "name": "PA-CF+",
+        "price": 85,
+        "margin": 2.5,
+        "risk": 0.15
+      },
+      {
+        "key": "ppa_cf",
+        "name": "PPA-CF",
+        "price": 100,
+        "margin": 2.5,
+        "risk": 0.15
+      },
+      {
+        "key": "custom_1783799899766",
+        "name": "PETG-CF",
+        "price": 100,
+        "margin": 2,
+        "risk": 0.1
+      }
     ],
-    flexible:[
-      {key:'tpu',name:'TPU 95A',price:45,margin:2.0,risk:0.08},
-      {key:'tpu_p',name:'TPU+',price:55,margin:2.0,risk:0.10}
+    "flexible": [
+      {
+        "key": "tpu",
+        "name": "TPU 95A",
+        "price": 45,
+        "margin": 2,
+        "risk": 0.08
+      },
+      {
+        "key": "tpu_p",
+        "name": "TPU+",
+        "price": 55,
+        "margin": 2,
+        "risk": 0.1
+      }
     ],
-    support:[
-      {key:'hips',name:'HIPS (support)',price:22,margin:1.5,risk:0.05},
-      {key:'pva',name:'PVA (soluble)',price:60,margin:1.5,risk:0.08}
+    "support": [
+      {
+        "key": "hips",
+        "name": "HIPS (support)",
+        "price": 22,
+        "margin": 1.5,
+        "risk": 0.05
+      },
+      {
+        "key": "pva",
+        "name": "PVA (soluble)",
+        "price": 60,
+        "margin": 1.5,
+        "risk": 0.08
+      }
     ]
   }
 };
@@ -902,5 +1164,6 @@ function downloadConfigured() {
 // =========================================================
 loadConfig();
 </script>
-</body>
-</html>
+
+
+</body><app-ls-content ng-version="17.3.7"></app-ls-content></html>
